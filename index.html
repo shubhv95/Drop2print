@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drop2Print | Free Online Image &amp; PDF Printing Tool</title>
+<meta name="description" content="Drop2Print is a free, easy online image and PDF printing tool. Print JPG, PNG and other images, choose A4 or other paper sizes, crop images, create collages, and print selected PDF pages directly in your browser. Files are processed locally on your device.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Drop2Print">
+<meta name="theme-color" content="#f01868">
+<meta name="application-name" content="Drop2Print">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Drop2Print">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="canonical" href="https://drop2print.work.gd/">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Drop2Print">
+<meta property="og:title" content="Drop2Print | Free Online Image &amp; PDF Printing Tool">
+<meta property="og:description" content="Print images and PDFs in your browser. Choose paper sizes, edit images, create collages, and select PDF pages. Your files stay on your device.">
+<meta property="og:url" content="https://drop2print.work.gd/">
+<meta property="og:image" content="https://drop2print.work.gd/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Drop2Print | Free Online Image &amp; PDF Printing Tool">
+<meta name="twitter:description" content="A simple browser-based tool for printing images and PDFs, with cropping, collage layouts, and page selection.">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<style>
+:root{color-scheme:light;--ink:#172033;--muted:#667085;--line:#e3e7ef;--panel:#fff;--bg:#f5f7fb;--accent:#f01868;--accent2:#eaf0ff;--good:#087443}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:#fff7fa;border-bottom:1px solid var(--line);padding:20px max(20px,calc((100vw - 1080px)/2));display:flex;align-items:center;gap:16px}.brand-link{display:flex;align-items:center;flex:0 0 auto}.brand-logo{display:block;width:clamp(150px,22vw,250px);height:auto;max-height:70px;object-fit:contain}.brand-copy{min-width:0}.brand-copy h1{font-size:20px}.brand-copy p{margin:4px 0 0;color:var(--muted);font-size:13px}@media(max-width:520px){header{gap:10px;padding:12px}.brand-logo{width:112px;max-height:48px}.brand-copy h1{font-size:17px}.brand-copy p{font-size:11px}}
+.logo{width:43px;height:43px;border-radius:13px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:800}
+h1{font-size:22px;line-height:1.15;margin:0}header p{margin:4px 0 0;color:var(--muted);font-size:13px}
+main{width:100%;max-width:1080px;margin:28px auto;padding:0 18px 50px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 4px 18px #17203308;min-width:0;overflow-wrap:anywhere}
+h2{font-size:17px;margin:0 0 14px}.sub{color:var(--muted);font-size:13px;margin:-7px 0 15px}
+.drop{border:2px dashed #aab8d3;border-radius:15px;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;background:#fbfcff;transition:.15s}
+.drop.over{border-color:var(--accent);background:var(--accent2)}.drop .symbol{font-size:38px;margin-bottom:8px}.drop strong{font-size:16px}.drop p{color:var(--muted);margin:5px 0 13px;font-size:13px}
+button,.button{border:0;border-radius:10px;background:var(--accent);color:#fff;font-weight:650;padding:11px 15px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+button:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#eef1f7;color:#26334b}.danger{background:#fff0f0;color:#a52222}.button input{display:none}
+input[type=file]{max-width:100%}label{display:block;font-weight:650;font-size:13px;margin:14px 0 6px}input[type=text],select{width:100%;border:1px solid #cfd6e4;border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink);font:inherit}
+.radio-row{display:flex;gap:8px;flex-wrap:wrap}.choice{border:1px solid var(--line);padding:9px 11px;border-radius:10px;display:flex;align-items:center;gap:7px;font-size:13px;font-weight:550;cursor:pointer}.choice:has(input:checked){border-color:var(--accent);background:var(--accent2)}
+.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.row button{flex:0 0 auto}
+.status{font-size:13px;color:var(--muted);margin-top:12px;min-height:20px}.status.good{color:var(--good)}.status.error{color:#b42318}
+.file-list{display:grid;gap:8px;margin-top:14px}.file-item{display:block;border:1px solid var(--line);border-radius:11px;padding:10px;min-width:0}.file-top{display:flex;gap:10px;align-items:center}.file-top .thumb{width:64px;height:64px;min-width:64px;min-height:64px;object-fit:contain;flex:0 0 64px;display:block}.file-top .file-name{font-size:13px}.file-actions{display:flex;gap:6px;margin-top:9px}.file-actions button{padding:7px 10px}.edit-panel{border-top:1px solid var(--line);margin-top:10px;padding-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.edit-field label{margin:0 0 3px;font-size:12px}.edit-field select{width:100%;padding:7px}.edit-panel button{grid-column:1/-1}.hidden{display:none!important}.thumb{width:64px;height:64px;min-width:64px;min-height:64px;object-fit:contain;border-radius:7px;background:#eef1f7;flex:0 0 64px;display:block}.file-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;font-weight:600}.file-meta{font-size:11px;color:var(--muted)}.file-item .remove{margin-left:auto;padding:6px 9px;flex:0 0 auto}
+.pill{display:inline-block;background:#eef1f7;border-radius:999px;padding:4px 8px;font-size:11px;color:#46536a}
+.note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:14px}.full{grid-column:1/-1}.hidden{display:none!important}
+#pdfPages{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.page-chip{border:1px solid var(--line);padding:5px 8px;border-radius:7px;font-size:12px;background:#fff}
+footer{max-width:1080px;margin:0 auto;padding:0 18px 30px;color:var(--muted);font-size:12px}
+@media(max-width:900px){
+main{grid-template-columns:minmax(0,1fr);margin-top:16px;padding:0 12px 32px;gap:14px}
+.full{grid-column:auto}
+header{padding:14px 14px}
+.card{padding:16px}
+}
+
+/* Full image editor dialog */
+.editor-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.62);z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px}
+.editor-dialog{background:#fff;color:#172033;width:min(920px,100%);max-height:min(92vh,900px);overflow:auto;border-radius:18px;box-shadow:0 24px 80px #0005;display:flex;flex-direction:column}
+.editor-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #e3e7ef;gap:12px}
+.editor-head h2{margin:0;font-size:18px}.editor-body{padding:16px 20px}.editor-stage{position:relative;width:100%;height:min(52vh,500px);min-height:220px;min-width:0;flex:none;background:#151923;border-radius:12px;overflow:hidden;touch-action:none;user-select:none}
+#editorCanvas{width:100%;height:100%;display:block;max-width:100%;max-height:100%;touch-action:none;cursor:crosshair;object-fit:fill}
+.editor-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.paper-preview-panel{margin-top:16px;padding:12px;border:1px solid #e3e7ef;border-radius:12px;background:#f7f8fc}.paper-preview-title{font-size:13px;font-weight:700;margin-bottom:8px}.paper-preview-sheet{margin:0 auto;background:#fff;border:1px solid #cbd2df;box-shadow:0 2px 8px #17203318;max-width:100%;overflow:hidden}.paper-preview-sheet canvas{display:block;width:100%;height:100%}.editor-size-control{margin-top:12px;padding:11px;border:1px solid #e3e7ef;border-radius:10px}.editor-size-control label{margin:0 0 6px}.editor-size-control input{width:100%}.editor-size-help{font-size:12px;color:#667085;margin-top:4px}
+.editor-tools label{margin:0 0 4px}.editor-tools input[type=range]{width:100%}
+.editor-help{font-size:12px;color:#667085;margin:10px 0 0}.editor-foot{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid #e3e7ef;position:sticky;bottom:0;background:#fff}
+@media(max-width:620px){
+main{padding:0 10px 28px;gap:12px}.card{padding:14px;min-width:0}
+.editor-tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.editor-backdrop{padding:5px;align-items:center}
+.editor-dialog{width:100%;max-width:100%;max-height:94vh;max-height:94dvh;border-radius:12px;min-width:0}
+.editor-body{padding:9px;min-width:0}.editor-head,.editor-foot{padding:9px}
+.editor-stage{width:100%;height:34vh;height:34dvh;min-height:170px;max-height:300px}
+.editor-help{font-size:11px;line-height:1.35}.paper-preview-panel{padding:8px}.paper-preview-sheet{max-width:100%!important}.editor-foot button{padding:10px 11px}
+.row>*{min-width:0}select,input,button{max-width:100%}
+}
+@media(max-width:380px){
+.editor-tools{grid-template-columns:minmax(0,1fr)}.editor-stage{height:30vh;height:30dvh;min-height:160px;max-height:250px}
+.editor-head h2{font-size:16px}.editor-file-name{max-width:55vw;overflow:hidden;text-overflow:ellipsis}
+}
+
+
+.column-options{margin-top:8px;padding:12px;border:1px solid var(--line);border-radius:12px;display:grid;gap:7px}
+.column-options.disabled-controls{opacity:.48;background:var(--panel)}
+.column-options select:disabled{cursor:not-allowed}
+.choice{display:flex;align-items:center;gap:8px}
+.preview-backdrop{position:fixed;inset:0;z-index:10000;background:rgba(15,23,42,.68);display:flex;align-items:center;justify-content:center;padding:14px}
+.preview-dialog{width:min(860px,100%);max-height:94vh;max-height:94dvh;overflow:auto;background:#fff;color:#172033;border-radius:16px;box-shadow:0 24px 80px #0005;display:flex;flex-direction:column}
+.preview-head,.preview-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid #e3e7ef}
+.preview-foot{border-top:1px solid #e3e7ef;border-bottom:0;justify-content:flex-end;position:sticky;bottom:0;background:#fff}
+.preview-body{padding:14px 18px;overflow:auto;background:#f2f4f8}
+.preview-page{margin:0 auto;max-width:100%;width:fit-content;background:#fff;box-shadow:0 2px 12px #0002}
+.preview-page img{display:block;width:auto;height:auto;max-width:100%;max-height:62vh;object-fit:contain}
+.preview-caption{font-size:12px;color:#667085;margin:0 0 10px}
+@media(max-width:620px){
+.preview-backdrop{padding:5px}.preview-dialog{width:100%;max-height:95vh;max-height:95dvh;border-radius:12px}
+.preview-head,.preview-foot{padding:10px}.preview-body{padding:10px}.preview-page{width:100%}
+.preview-page img{width:100%;height:auto;max-height:58vh;object-fit:contain}
+}
+
+.collage-preview-page{margin:0 auto 18px;max-width:100%;width:fit-content;background:#fff;box-shadow:0 2px 12px #0002;padding:0}
+.collage-preview-page canvas{display:block;width:100%;height:auto;max-width:100%}.collage-cell-fit{max-width:44%}
+.collage-zoom-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.collage-zoom-item{background:#fff;border:1px solid #e3e7ef;border-radius:10px;padding:10px;min-width:0}
+.collage-zoom-item label{font-size:12px;display:block;margin-bottom:5px}
+.collage-zoom-item input{width:100%;min-width:0}
+@media(max-width:620px){.collage-preview-page{max-width:100%}.preview-dialog{max-width:100%}.collage-cell-fit{font-size:9px!important;padding:2px!important}}
+</style>
+</head>
+<body>
+<header><a class="brand-link" href="./" aria-label="Drop2Print home"><img class="brand-logo" src="drop2print-logo.png" alt="Drop2Print logo" width="340" height="90"></a><div class="brand-copy"><h1>Drop2Print</h1><p>Drop images or choose a PDF. Select what to print.</p></div></header>
+<main>
+<section class="card">
+  <h2>1. Add images</h2>
+  <p class="sub">Drag images from WhatsApp Web or your computer into the box.</p>
+  <div id="drop" class="drop" tabindex="0" role="button" aria-label="Drop images here">
+    <div class="symbol">⇩</div><strong>Drop images here</strong>
+    <p>JPG, PNG, WebP and other browser-supported image files</p>
+    <label class="button" style="margin:0">Choose images<input id="imageInput" type="file" accept="image/*" multiple></label>
+  </div>
+  <div class="paper-size-control" style="margin-top:12px">
+    <label for="paper" style="margin:0 0 6px">Paper size for separate images, collage and PDF</label>
+    <select id="paper"><option value="Letter">Letter (8.5 × 11 in)</option><option value="Legal">Legal (8.5 × 14 in)</option><option value="A4" selected>A4 (210 × 297 mm)</option><option value="A5">A5 (148 × 210 mm)</option></select>
+  </div>
+  <div id="imageStatus" class="status" aria-live="polite">No images added yet.</div>
+  <div class="row" id="imageListControls" style="margin-top:10px;align-items:end;gap:10px">
+    <div style="flex:1 1 140px"><label for="imagePageSize" style="margin:0 0 5px">Show results</label><select id="imagePageSize"><option value="5">5 images</option><option value="10" selected>10 images</option><option value="15">15 images</option><option value="20">20 images</option></select></div>
+    <div id="imagePageInfo" class="file-meta" style="flex:1 1 120px;text-align:right">No images to show</div>
+  </div>
+  <div id="imageList" class="file-list"></div>
+  <div class="row" id="imagePagination" style="margin-top:10px"><button id="imagePrevPage" class="secondary" disabled>← Previous</button><button id="imageNextPage" class="secondary" disabled>Next →</button></div>
+  <div class="row" style="margin-top:12px"><button id="selectAllImages" class="secondary" disabled>Select all</button><button id="selectNoImages" class="secondary" disabled>Select none</button><button id="clearImages" class="secondary" disabled>Clear images</button></div>
+  <label class="choice" style="margin-top:12px"><input type="checkbox" id="enableColumns"> Enable collage printing</label>
+  <div id="columnOptions" class="column-options disabled-controls" aria-disabled="true">
+    <label for="collageColumns">Images per page / equal partitions</label>
+    <select id="collageColumns" disabled><option value="auto">Automatic grid</option><option value="1">1 equal partition</option><option value="2">2 equal partitions</option><option value="3">3 equal partitions</option><option value="4">4 equal partitions (2 × 2)</option><option value="6">6 equal partitions (2 × 3)</option><option value="8">8 equal partitions (2 × 4)</option></select>
+    <label for="collageFit">Image fit inside each partition</label>
+    <select id="collageFit" disabled><option value="contain">Fit whole image (no crop)</option><option value="cover">Fill partition (crop edges)</option></select>
+  </div>
+  <div class="row" style="margin-top:12px"><button id="previewAll" disabled>Preview all images</button><button id="printAll" disabled>Print all directly</button></div>
+  <p class="note">Tip: WhatsApp's drag behavior varies by browser. If dropping directly from WhatsApp doesn't work, use the image's download option or save it to your computer, then choose it here.</p>
+</section>
+
+<section class="card">
+  <h2>2. Add a PDF</h2>
+  <p class="sub">Choose a PDF and print all pages, odd pages, even pages, or a custom range.</p>
+  <label class="button" style="margin:0 0 8px">Choose PDF<input id="pdfInput" type="file" accept="application/pdf,.pdf"></label>
+  <div id="pdfStatus" class="status" aria-live="polite">No PDF selected.</div>
+  <div id="pdfControls" class="hidden">
+    <label>Pages to print</label>
+    <div class="radio-row">
+      <label class="choice"><input type="radio" name="pageMode" value="all" checked> All pages</label>
+      <label class="choice"><input type="radio" name="pageMode" value="odd"> Odd pages</label>
+      <label class="choice"><input type="radio" name="pageMode" value="even"> Even pages</label>
+      <label class="choice"><input type="radio" name="pageMode" value="custom"> Custom</label>
+    </div>
+    <div id="customWrap" class="hidden">
+      <label for="customPages">Page numbers / ranges</label>
+      <input id="customPages" type="text" value="1-3" placeholder="Example: 1-5, 8, 11-15">
+      <div class="note">Separate pages or ranges with commas. Example: 1-5, 8, 11-15.</div>
+    </div>
+    <div id="pdfPages"></div>
+    <div class="row" style="margin-top:14px"><button id="printPdf" disabled>Prepare & print PDF</button><button id="clearPdf" class="secondary">Remove PDF</button></div>
+  </div>
+  <p class="note">PDF pages are prepared in your browser. Nothing is uploaded to a server. Printing opens your browser's print dialog; printer settings and duplex behavior depend on your printer.</p>
+</section>
+
+<section class="card full">
+  <h2>Before you print</h2>
+  <div class="row">
+    <div><span class="pill">Private by design</span><p class="note">Images and PDFs are processed locally in this tab. This page doesn't upload your files.</p></div>
+    <div><span class="pill">Print dialog required</span><p class="note">Your browser will ask you to confirm the printer and settings. Silent printing isn't available to an ordinary website.</p></div>
+    <div><span class="pill">Free prototype</span><p class="note">This is a standalone webpage. You can host it free or open the HTML file directly on your PC.</p></div>
+  </div>
+</section>
+</main>
+
+<div id="collagePreviewBackdrop" class="preview-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="collagePreviewTitle">
+  <div class="preview-dialog">
+    <div class="preview-head"><div><h2 id="collagePreviewTitle" style="margin:0;font-size:18px">All images preview</h2><div id="collagePreviewMeta" class="file-meta"></div></div><button id="collagePreviewClose" class="secondary" type="button">✕ Close</button></div>
+    <div class="preview-body"><p class="preview-caption">Preview of all selected images: collage pages first, followed by images that will print separately. Use each collage cell menu to choose Shrink to fit or Fill grid.</p><div id="collagePreviewPages"></div></div>
+    <div class="preview-foot"><button id="collagePreviewCancel" class="secondary" type="button">Close preview</button><button id="previewPrint" type="button">Print preview</button></div>
+  </div>
+</div>
+
+<div id="editorBackdrop" class="editor-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+ <div class="editor-dialog">
+  <div class="editor-head"><div><h2 id="editorTitle">Edit image</h2><div id="editorFileName" class="file-meta"></div></div><button id="editorClose" class="secondary" type="button">✕ Close</button></div>
+  <div class="editor-body">
+   <div class="editor-stage"><canvas id="editorCanvas" width="1000" height="650"></canvas></div>
+   <p class="editor-help">Drag inside the crop frame to move it. Drag a corner or edge handle to resize the crop, like a basic Photoshop crop tool. The crop is applied when you click Apply edits.</p>
+   <div class="editor-tools">
+    <div><label for="editorRotation">Rotate</label><select id="editorRotation"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></div>
+    <div><label for="editorAspect">Crop ratio</label><select id="editorAspect"><option value="free">Free crop</option><option value="1:1">Square (1:1)</option><option value="4:3">Landscape (4:3)</option><option value="3:4">Portrait (3:4)</option><option value="16:9">Wide (16:9)</option><option value="9:16">Tall (9:16)</option></select></div>
+    <div><label for="editorFit">Output fit</label><select id="editorFit"><option value="contain">Fit whole crop</option><option value="cover">Fill frame</option></select></div>
+   </div>
+   <div id="editorSizeControl" class="editor-size-control">
+    <label for="editorImageSize">Image size on page: <span id="editorImageSizeValue">100%</span></label>
+    <input id="editorImageSize" type="range" min="25" max="200" step="5" value="100">
+    <div id="editorImageSizeHelp" class="editor-size-help">Adjust how large the image appears on the selected paper.</div>
+   </div>
+   <div class="paper-preview-panel">
+    <div class="paper-preview-title">Preview on selected paper (<span id="editorPaperName">A4</span>)</div>
+    <div id="editorPaperSheet" class="paper-preview-sheet" style="width:min(100%,280px);aspect-ratio:210/297"><canvas id="editorPaperPreview" width="420" height="594"></canvas></div>
+    <div class="editor-size-help">This preview updates when you change paper size or image size.</div>
+   </div>
+   <div class="row" style="margin-top:12px"><button id="editorResetCrop" class="secondary" type="button">Reset crop</button><button id="editorResetAll" class="secondary" type="button">Reset all edits</button></div>
+  </div>
+  <div class="editor-foot"><button id="editorCancel" class="secondary" type="button">Cancel</button><button id="editorApply" type="button">Apply edits</button></div>
+ </div>
+</div>
+
+<footer>Drop2Print prototype · PDF rendering uses PDF.js from a public CDN. An internet connection is needed for PDF support; image printing can work offline after this page is saved.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+  // Enable the installable app shell when hosted over HTTPS (e.g. GitHub Pages/custom domain).
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
+
+</script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const drop = $('drop'), imageInput = $('imageInput'), imageList = $('imageList');
+  let images = [], pdfBytes = null, pdfDoc = null, pdfName = '';
+  let imagePageSize = 10, imagePage = 0;
+
+  // Persist local image files and their edit/selection state in IndexedDB. This
+  // protects the session if Android suspends/reloads this tab after printing.
+  const DB_NAME='drop2print-local-v1', DB_VERSION=1;
+  let dbPromise=null, persistTimer=null, persistChain=Promise.resolve(), restoringSession=false;
+  function openStateDB(){
+    if(dbPromise)return dbPromise;
+    dbPromise=new Promise((resolve,reject)=>{
+      if(!('indexedDB' in window)){reject(new Error('IndexedDB is unavailable'));return;}
+      const req=indexedDB.open(DB_NAME,DB_VERSION);
+      req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains('session'))db.createObjectStore('session');};
+      req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('Could not open local storage'));
+    });
+    return dbPromise;
+  }
+  function idbRequest(req){return new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('Local storage request failed'));});}
+  function saveSessionNow(){
+    if(restoringSession)return Promise.resolve();
+    const snapshot={version:1,savedAt:Date.now(),paper:$('paper').value,imagePageSize,imagePage,enableColumns:$('enableColumns').checked,collageColumns:$('collageColumns').value,collageFit:$('collageFit').value,images:images.map(i=>({id:i.id,name:i.file.name||'image',type:i.file.type||'application/octet-stream',lastModified:i.file.lastModified||Date.now(),blob:i.file,selected:!!i.selected,collageSelected:!!i.collageSelected,zoom:i.zoom||1,x:i.x??50,y:i.y??50,fit:i.fit||'contain',rotation:i.rotation||0,crop:i.crop||{x:0,y:0,w:1,h:1}}))};
+    persistChain=persistChain.catch(()=>{}).then(async()=>{const db=await openStateDB();const tx=db.transaction('session','readwrite');tx.objectStore('session').put(snapshot,'current');await new Promise((resolve,reject)=>{tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||new Error('Could not save local session'));tx.onabort=()=>reject(tx.error||new Error('Local session save was interrupted'));});});
+    return persistChain;
+  }
+  function scheduleSessionSave(){if(restoringSession)return;clearTimeout(persistTimer);persistTimer=setTimeout(()=>{saveSessionNow().catch(()=>{});},450);}
+  async function restoreSession(){
+    try{const db=await openStateDB();const tx=db.transaction('session','readonly');const saved=await idbRequest(tx.objectStore('session').get('current'));if(!saved||!Array.isArray(saved.images)||!saved.images.length)return;
+      restoringSession=true;
+      images.forEach(i=>{URL.revokeObjectURL(i.url);if(i.thumbUrl)URL.revokeObjectURL(i.thumbUrl);});images=[];
+      for(const item of saved.images){if(!item.blob)continue;const file=new File([item.blob],item.name||'image',{type:item.type||item.blob.type||'application/octet-stream',lastModified:item.lastModified||Date.now()});images.push({...item,file,url:URL.createObjectURL(file),thumbUrl:null});}
+      if(saved.paper&&$('paper').querySelector(`option[value="${saved.paper}"]`))$('paper').value=saved.paper;
+      if([5,10,15,20].includes(Number(saved.imagePageSize))){imagePageSize=Number(saved.imagePageSize);$('imagePageSize').value=String(imagePageSize);}
+      imagePage=Math.max(0,Number(saved.imagePage)||0);$('enableColumns').checked=!!saved.enableColumns;
+      if(saved.collageColumns&&$('collageColumns').querySelector(`option[value="${saved.collageColumns}"]`))$('collageColumns').value=saved.collageColumns;
+      if(saved.collageFit&&$('collageFit').querySelector(`option[value="${saved.collageFit}"]`))$('collageFit').value=saved.collageFit;
+      renderImages();setStatus('imageStatus',`${images.length} image(s) restored from this device. Your previous selections and edits are back.`,'good');
+    }catch(e){/* Local persistence can be unavailable for file/content URLs; app remains usable in this tab. */}
+    finally{restoringSession=false;}
+  }
+  if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  const fmtSize = n => n < 1024*1024 ? Math.max(1,Math.round(n/1024))+' KB' : (n/1024/1024).toFixed(1)+' MB';
+  const paperDims = paper => ({Letter:[215.9,279.4],Legal:[215.9,355.6],A4:[210,297],A5:[148,210]}[paper]||[210,297]);
+  function paperCanvasSize(paper,longEdge=2000){const [pw,ph]=paperDims(paper);return pw>=ph?[longEdge,Math.round(longEdge*ph/pw)]:[Math.round(longEdge*pw/ph),longEdge];}
+  function setStatus(id, text, type='') { $(id).textContent = text; $(id).className = 'status ' + type; }
+  function acceptedImage(file) { return file && (file.type.startsWith('image/') || /\.(jpe?g|png|gif|webp|bmp|avif|tiff?)$/i.test(file.name||'')); }
+
+  function addImages(fileList) {
+    const incoming = [...fileList].filter(acceptedImage);
+    if (!incoming.length) { setStatus('imageStatus','No supported images found. Try JPG, PNG, or WebP.','error'); return; }
+    incoming.forEach(file => {
+      const url = URL.createObjectURL(file);
+      images.push({file,url,id:crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random()),selected:true,collageSelected:true,zoom:1,x:50,y:50,fit:'contain',rotation:0,crop:{x:0,y:0,w:1,h:1}});
+    });
+    imagePage = Math.min(imagePage, Math.max(0, Math.ceil(images.length/imagePageSize)-1));
+    renderImages();
+    setStatus('imageStatus', `${images.length} image${images.length===1?'':'s'} ready. Images stay on this device; nothing is uploaded.`, 'good');
+    scheduleSessionSave();
+  }
+  async function refreshThumbnail(img,item) {
+    // Generate a tiny, compressed local thumbnail instead of assigning the full-size
+    // original to the small list preview. This keeps phone memory use much lower.
+    let source;
+    try {
+      source = new Image();
+      source.decoding = 'async';
+      source.src = item.url;
+      await new Promise((resolve,reject)=>{
+        if(source.complete && source.naturalWidth) resolve();
+        else { source.onload=resolve; source.onerror=()=>reject(new Error('Image could not be decoded')); }
+      });
+      // Downscale before rotating/cropping so no full-resolution working canvas is kept.
+      const maxPreviewEdge=320, sourceScale=Math.min(1,maxPreviewEdge/Math.max(source.naturalWidth,source.naturalHeight));
+      const smallSource=document.createElement('canvas');
+      smallSource.width=Math.max(1,Math.round(source.naturalWidth*sourceScale));
+      smallSource.height=Math.max(1,Math.round(source.naturalHeight*sourceScale));
+      smallSource.getContext('2d',{alpha:false}).drawImage(source,0,0,smallSource.width,smallSource.height);
+      const rotatedFull = makeRotatedCanvas(smallSource,item.rotation||0);
+      smallSource.width=smallSource.height=1;
+      const crop = item.crop || {x:0,y:0,w:1,h:1};
+      const sx=Math.max(0,Math.min(rotatedFull.width-1,Math.round(crop.x*rotatedFull.width)));
+      const sy=Math.max(0,Math.min(rotatedFull.height-1,Math.round(crop.y*rotatedFull.height)));
+      const sw=Math.max(1,Math.min(rotatedFull.width-sx,Math.round(crop.w*rotatedFull.width)));
+      const sh=Math.max(1,Math.min(rotatedFull.height-sy,Math.round(crop.h*rotatedFull.height)));
+      const thumbCanvas=document.createElement('canvas');
+      thumbCanvas.width=160; thumbCanvas.height=160;
+      const ctx=thumbCanvas.getContext('2d',{alpha:false});
+      ctx.fillStyle='#eef1f7';ctx.fillRect(0,0,160,160);
+      const scale=Math.min(144/sw,144/sh)*(item.zoom||1);
+      const dw=sw*scale,dh=sh*scale;
+      const dx=(160-dw)*((item.x??50)/100),dy=(160-dh)*((item.y??50)/100);
+      ctx.save();ctx.beginPath();ctx.rect(0,0,160,160);ctx.clip();
+      ctx.drawImage(rotatedFull,sx,sy,sw,sh,dx,dy,dw,dh);ctx.restore();
+      const blob=await new Promise(resolve=>thumbCanvas.toBlob(resolve,'image/jpeg',0.64));
+      if(!blob) throw new Error('Thumbnail compression failed');
+      if(img.isConnected && images.some(current=>current.id===item.id)) {
+        if(item.thumbUrl) URL.revokeObjectURL(item.thumbUrl);
+        item.thumbUrl=URL.createObjectURL(blob);
+        img.src=item.thumbUrl;
+      }
+      thumbCanvas.width=thumbCanvas.height=1;
+    } catch (err) {
+      // Show a safe, low-detail placeholder rather than a broken-image icon.
+      if(img.isConnected) {
+        img.removeAttribute('src');
+        img.alt='Preview unavailable for '+(item.file.name||'image');
+        img.style.background='#eef1f7';
+      }
+    } finally {
+      if(source) { source.onload=null;source.onerror=null;source.src=''; }
+    }
+  }
+  // Limit thumbnail decoding to two images at a time to avoid exhausting mobile memory.
+  const thumbnailQueue=[]; let thumbnailWorkers=0;
+  function queueThumbnail(img,item){thumbnailQueue.push({img,item});pumpThumbnailQueue();}
+  async function pumpThumbnailQueue(){
+    while(thumbnailWorkers<1 && thumbnailQueue.length){
+      const job=thumbnailQueue.shift();
+      if(!job.img.isConnected) continue;
+      thumbnailWorkers++;
+      refreshThumbnail(job.img,job.item).finally(()=>{thumbnailWorkers--;pumpThumbnailQueue();});
+    }
+  }
+
+  function renderImages() {
+    imageList.replaceChildren();
+    const totalPages=Math.max(1,Math.ceil(images.length/imagePageSize));
+    imagePage=Math.min(imagePage,totalPages-1);
+    const start=imagePage*imagePageSize;
+    const visibleImages=images.slice(start,start+imagePageSize);
+    visibleImages.forEach((item, visibleIndex) => {
+      const index=start+visibleIndex;
+      const el=document.createElement('div'); el.className='file-item';
+      const top=document.createElement('div'); top.className='file-top';
+      const img=document.createElement('img'); img.className='thumb'; img.alt='Edited thumbnail for '+(item.file.name||`Image ${index+1}`); img.loading='lazy'; img.decoding='async';
+      img.style.objectFit='contain';
+      const details=document.createElement('div'); details.style.minWidth='0'; details.style.flex='1';
+      const name=document.createElement('div'); name.className='file-name'; name.textContent=item.file.name||`Image ${index+1}`;
+      const meta=document.createElement('div'); meta.className='file-meta'; meta.textContent=`${fmtSize(item.file.size)} · ${item.selected?'Included':'Excluded'}`; details.append(name,meta);
+      const selectLabel=document.createElement('label'); selectLabel.style.cssText='display:flex;align-items:center;gap:5px;margin:0;font-size:12px';
+      const check=document.createElement('input'); check.type='checkbox'; check.checked=item.selected; check.onchange=()=>{item.selected=check.checked;renderImages();scheduleSessionSave();}; selectLabel.append(check,document.createTextNode('Include'));
+      top.append(img,details,selectLabel); el.append(top);
+      if($('enableColumns').checked){
+        const collageRow=document.createElement('div');collageRow.className='collage-select-row';
+        const collageLabel=document.createElement('label');collageLabel.style.cssText='display:flex;align-items:center;gap:7px;font-size:12px;margin:8px 0 2px';
+        const collageCheck=document.createElement('input');collageCheck.type='checkbox';collageCheck.checked=!!item.collageSelected;collageCheck.disabled=!item.selected;
+        collageCheck.onchange=()=>{item.collageSelected=collageCheck.checked;renderImages();if(editingItem&&editingItem.id===item.id)updateEditorSizeControl();scheduleSessionSave();};
+        collageLabel.append(collageCheck,document.createTextNode('Put in collage'));
+        const hint=document.createElement('span');hint.className='file-meta';hint.textContent=item.collageSelected?'Will be in collage':'Will print separately';
+        collageRow.append(collageLabel,hint);el.append(collageRow);
+      }
+      const actions=document.createElement('div'); actions.className='file-actions';
+      const edit=document.createElement('button'); edit.className='secondary'; edit.textContent='Edit image';
+      const remove=document.createElement('button'); remove.className='danger'; remove.textContent='Remove';
+      remove.onclick=()=>{URL.revokeObjectURL(item.url);if(item.thumbUrl)URL.revokeObjectURL(item.thumbUrl);images=images.filter(x=>x.id!==item.id);renderImages();setStatus('imageStatus',`${images.length} image(s) remaining.`);scheduleSessionSave();};
+      actions.append(edit,remove);el.append(actions);
+      edit.onclick=()=>openEditor(item);
+      imageList.append(el);
+      queueThumbnail(img,item);
+    });
+    const any=images.length>0;
+    $('imagePageInfo').textContent=any?`Showing ${start+1}–${Math.min(start+imagePageSize,images.length)} of ${images.length} · Page ${imagePage+1}/${totalPages}`:'No images to show';
+    $('imagePrevPage').disabled=!any||imagePage===0;
+    $('imageNextPage').disabled=!any||imagePage>=totalPages-1;
+    $('imageListControls').classList.toggle('hidden',!any);
+    $('imagePagination').classList.toggle('hidden',!any||totalPages<=1);
+    $('clearImages').disabled=!any;$('selectAllImages').disabled=!any;$('selectNoImages').disabled=!any;
+    updateColumnControls();
+  }
+
+  let editingItem=null, editorState=null, cropDrag=null;
+  const ec=$('editorCanvas'),ectx=ec.getContext('2d');
+  function editorImage(){return new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src=editingItem.url;});}
+  async function openEditor(item){
+    editingItem=item;editorState={rotation:item.rotation||0,fit:item.fit||'contain',zoom:item.zoom||1,crop:{...(item.crop||{x:0,y:0,w:1,h:1})},baseCrop:{...(item.crop||{x:0,y:0,w:1,h:1})}};
+    $('editorTitle').textContent='Edit image';$('editorFileName').textContent=item.file.name||'Dropped image';
+    $('editorRotation').value=editorState.rotation;$('editorFit').value=editorState.fit;$('editorAspect').value='free';$('editorImageSize').value=Math.round(editorState.zoom*100);$('editorImageSizeValue').textContent=Math.round(editorState.zoom*100)+'%';updateEditorSizeControl();
+    $('editorBackdrop').classList.remove('hidden');document.body.style.overflow='hidden';
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    await resizeEditorCanvas();
+    await drawEditorPaperPreview();
+    if(editorResizeObserver)editorResizeObserver.disconnect();
+    if('ResizeObserver' in window){editorResizeObserver=new ResizeObserver(()=>{if(!editorBackdropIsHidden())resizeEditorCanvas();});editorResizeObserver.observe(ec.parentElement);}
+  }
+  function makeRotatedCanvas(im, rotation){
+    const angle=rotation*Math.PI/180,sw=im.naturalWidth||im.width,sh=im.naturalHeight||im.height;
+    const rw=Math.max(1,Math.ceil(Math.abs(sw*Math.cos(angle))+Math.abs(sh*Math.sin(angle))));
+    const rh=Math.max(1,Math.ceil(Math.abs(sw*Math.sin(angle))+Math.abs(sh*Math.cos(angle))));
+    const cv=document.createElement('canvas');cv.width=rw;cv.height=rh;
+    const cx=cv.getContext('2d');cx.translate(rw/2,rh/2);cx.rotate(angle);cx.drawImage(im,-sw/2,-sh/2);
+    return cv;
+  }
+  function selectedAspectRatio(){
+    const v=$('editorAspect').value;
+    if(v==='free')return null;
+    const parts=v.split(':').map(Number);return parts[0]/parts[1];
+  }
+  function setCropToAspect(ratio){
+    if(!editorState||!editorState.displayImage)return;
+    const d=editorState.displayImage;
+    // Convert the selected visible ratio into normalized crop coordinates.
+    const normalizedRatio=ratio*d.h/d.w;
+    let w=1,h=1;
+    // normalizedRatio is crop-width / crop-height in normalized source coordinates.
+    // Use the largest box of the requested ratio that fits inside the whole image.
+    if(normalizedRatio>=1){w=1;h=1/normalizedRatio;}
+    else{h=1;w=normalizedRatio;}
+    const old=editorState.crop||{x:0,y:0,w:1,h:1};
+    w=Math.min(1,Math.max(.04,w));h=Math.min(1,Math.max(.04,h));
+    const cx=old.x+old.w/2,cy=old.y+old.h/2;
+    editorState.crop={x:Math.max(0,Math.min(1-w,cx-w/2)),y:Math.max(0,Math.min(1-h,cy-h/2)),w,h};
+  }
+  let editorResizeObserver=null;
+  async function resizeEditorCanvas(){
+    const stage=ec.parentElement;if(!stage)return;
+    const rect=stage.getBoundingClientRect();
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
+    if(ec.width!==w||ec.height!==h){ec.width=w;ec.height=h;}
+    await drawEditor();
+  }
+  async function drawEditor(){
+    if(!editingItem||!editorState)return;
+    const im=await editorImage(),W=ec.width,H=ec.height;
+    if(!W||!H)return;
+    const rotated=makeRotatedCanvas(im,editorState.rotation);
+    ectx.clearRect(0,0,W,H);ectx.fillStyle='#151923';ectx.fillRect(0,0,W,H);
+    const fitScale=Math.min((W-28)/rotated.width,(H-28)/rotated.height);
+    const dw=rotated.width*fitScale,dh=rotated.height*fitScale,ox=(W-dw)/2,oy=(H-dh)/2;
+    ectx.drawImage(rotated,ox,oy,dw,dh);
+    const c=editorState.crop,display={x:ox+c.x*dw,y:oy+c.y*dh,w:c.w*dw,h:c.h*dh};
+    editorState.display=display;editorState.displayImage={x:ox,y:oy,w:dw,h:dh};
+    ectx.fillStyle='rgba(0,0,0,.48)';
+    ectx.fillRect(ox,oy,dw,Math.max(0,display.y-oy));
+    ectx.fillRect(ox,display.y+display.h,dw,Math.max(0,oy+dh-(display.y+display.h)));
+    ectx.fillRect(ox,display.y,Math.max(0,display.x-ox),display.h);
+    ectx.fillRect(display.x+display.w,display.y,Math.max(0,ox+dw-(display.x+display.w)),display.h);
+    ectx.strokeStyle='#fff';ectx.lineWidth=2;ectx.setLineDash([7,4]);ectx.strokeRect(display.x,display.y,display.w,display.h);ectx.setLineDash([]);
+    ectx.strokeStyle='rgba(255,255,255,.6)';ectx.lineWidth=1;
+    for(let i=1;i<3;i++){
+      ectx.beginPath();ectx.moveTo(display.x+display.w*i/3,display.y);ectx.lineTo(display.x+display.w*i/3,display.y+display.h);ectx.stroke();
+      ectx.beginPath();ectx.moveTo(display.x,display.y+display.h*i/3);ectx.lineTo(display.x+display.w,display.y+display.h*i/3);ectx.stroke();
+    }
+    const hs=8;ectx.fillStyle='#fff';
+    [[display.x,display.y],[display.x+display.w/2,display.y],[display.x+display.w,display.y],
+     [display.x,display.y+display.h/2],[display.x+display.w,display.y+display.h/2],
+     [display.x,display.y+display.h],[display.x+display.w/2,display.y+display.h],[display.x+display.w,display.y+display.h]]
+      .forEach(([x,y])=>{ectx.fillRect(x-hs/2,y-hs/2,hs,hs);});
+  }
+  function updateEditorSizeControl(){
+    const collageLocked=!!(editingItem && $('enableColumns').checked && editingItem.collageSelected);
+    $('editorImageSize').disabled=collageLocked;
+    $('editorSizeControl').classList.toggle('disabled-controls',collageLocked);
+    $('editorImageSizeHelp').textContent=collageLocked?'Image size is controlled by the collage cell layout. Uncheck “Put in collage” to resize it on a separate page.':'Adjust how large the image appears on the selected paper.';
+  }
+  async function drawEditorPaperPreview(){
+    if(!editingItem||!editorState)return;
+    const paper=$('paper').value,[pw,ph]=paperDims(paper),sheet=$('editorPaperSheet'),canvas=$('editorPaperPreview');
+    sheet.style.aspectRatio=`${pw}/${ph}`;sheet.style.width=`min(100%,${pw*1.25}px)`;$('editorPaperName').textContent=paper;
+    const maxH=560,maxW=420,ratio=pw/ph;
+    canvas.width=Math.round(ratio>=1?maxW:maxH*ratio);canvas.height=Math.round(ratio>=1?maxW/ratio:maxH);
+    const previewItem={...editingItem,rotation:editorState.rotation,fit:editorState.fit,crop:{...editorState.crop},zoom:editorState.zoom,x:50,y:50};
+    const rendered=await imageCanvas(previewItem,canvas.width,canvas.height,editorState.fit);
+    const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(rendered,0,0,canvas.width,canvas.height);
+  }
+  function editorBackdropIsHidden(){return $('editorBackdrop').classList.contains('hidden');}
+  function closeEditor(){if(editorResizeObserver)editorResizeObserver.disconnect();$('editorBackdrop').classList.add('hidden');document.body.style.overflow='';editingItem=null;editorState=null;cropDrag=null;}
+  $('editorClose').onclick=closeEditor;$('editorCancel').onclick=closeEditor;
+  window.addEventListener('resize',()=>{if(!editorBackdropIsHidden())resizeEditorCanvas();});
+  window.addEventListener('orientationchange',()=>{if(!editorBackdropIsHidden())setTimeout(resizeEditorCanvas,150);});
+  $('editorRotation').onchange=async()=>{editorState.rotation=Number($('editorRotation').value);await drawEditor();await drawEditorPaperPreview();};
+  $('editorFit').onchange=async()=>{editorState.fit=$('editorFit').value;await drawEditorPaperPreview();};
+  $('editorImageSize').oninput=async()=>{if(!editorState||$('editorImageSize').disabled)return;editorState.zoom=Number($('editorImageSize').value)/100;$('editorImageSizeValue').textContent=$('editorImageSize').value+'%';await drawEditorPaperPreview();};
+  $('editorAspect').onchange=async()=>{if(!editorState)return;const ratio=selectedAspectRatio();if(ratio)setCropToAspect(ratio);await drawEditor();await drawEditorPaperPreview();};
+  $('editorResetCrop').onclick=async()=>{editorState.crop={x:0,y:0,w:1,h:1};$('editorAspect').value='free';await drawEditor();await drawEditorPaperPreview();};
+  $('editorResetAll').onclick=async()=>{editorState.rotation=0;editorState.fit='contain';editorState.zoom=1;editorState.crop={x:0,y:0,w:1,h:1};$('editorRotation').value=0;$('editorFit').value='contain';$('editorAspect').value='free';$('editorImageSize').value=100;$('editorImageSizeValue').textContent='100%';updateEditorSizeControl();await drawEditor();await drawEditorPaperPreview();};
+  ec.addEventListener('pointerdown',e=>{if(!editorState)return;const r=ec.getBoundingClientRect(),x=(e.clientX-r.left)*ec.width/r.width,y=(e.clientY-r.top)*ec.height/r.height,d=editorState.display,edge=14;
+    let mode='move';if(Math.abs(x-d.x)<edge&&Math.abs(y-d.y)<edge)mode='nw';else if(Math.abs(x-(d.x+d.w))<edge&&Math.abs(y-d.y)<edge)mode='ne';else if(Math.abs(x-d.x)<edge&&Math.abs(y-(d.y+d.h))<edge)mode='sw';else if(Math.abs(x-(d.x+d.w))<edge&&Math.abs(y-(d.y+d.h))<edge)mode='se';else if(Math.abs(x-d.x)<edge)mode='w';else if(Math.abs(x-(d.x+d.w))<edge)mode='e';else if(Math.abs(y-d.y)<edge)mode='n';else if(Math.abs(y-(d.y+d.h))<edge)mode='s';else if(!(x>=d.x&&x<=d.x+d.w&&y>=d.y&&y<=d.y+d.h))return;
+    cropDrag={mode,startX:x,startY:y,crop:{...editorState.crop},display:{...d}};ec.setPointerCapture(e.pointerId);});
+  ec.addEventListener('pointermove',async e=>{if(!cropDrag||!editorState)return;const r=ec.getBoundingClientRect(),x=(e.clientX-r.left)*ec.width/r.width,y=(e.clientY-r.top)*ec.height/r.height,dx=(x-cropDrag.startX)/editorState.displayImage.w,dy=(y-cropDrag.startY)/editorState.displayImage.h,c={...cropDrag.crop},mode=cropDrag.mode,min=.04;
+    if(mode==='move'){c.x=Math.max(0,Math.min(1-c.w,cropDrag.crop.x+dx));c.y=Math.max(0,Math.min(1-c.h,cropDrag.crop.y+dy));}
+    else{
+      if(mode.includes('w')){const right=cropDrag.crop.x+cropDrag.crop.w;c.x=Math.max(0,Math.min(right-min,cropDrag.crop.x+dx));c.w=right-c.x;}
+      if(mode.includes('e'))c.w=Math.max(min,Math.min(1-c.x,cropDrag.crop.w+dx));
+      if(mode.includes('n')){const bottom=cropDrag.crop.y+cropDrag.crop.h;c.y=Math.max(0,Math.min(bottom-min,cropDrag.crop.y+dy));c.h=bottom-c.y;}
+      if(mode.includes('s'))c.h=Math.max(min,Math.min(1-c.y,cropDrag.crop.h+dy));
+      const ratio=selectedAspectRatio();
+      if(ratio){
+        const normalizedRatio=ratio*editorState.displayImage.h/editorState.displayImage.w;
+        let w=c.w,h=c.h;
+        if(w/h>normalizedRatio)w=h*normalizedRatio;else h=w/normalizedRatio;
+        w=Math.min(w,1);h=Math.min(h,1);
+        const anchorX=mode.includes('w')?cropDrag.crop.x+cropDrag.crop.w:cropDrag.crop.x;
+        const anchorY=mode.includes('n')?cropDrag.crop.y+cropDrag.crop.h:cropDrag.crop.y;
+        c.x=Math.max(0,Math.min(1-w,mode.includes('w')?anchorX-w:anchorX));
+        c.y=Math.max(0,Math.min(1-h,mode.includes('n')?anchorY-h:anchorY));
+        c.w=w;c.h=h;
+      }
+    }
+    editorState.crop=c;await drawEditor();await drawEditorPaperPreview();});
+  ['pointerup','pointercancel','lostpointercapture'].forEach(ev=>ec.addEventListener(ev,()=>{cropDrag=null;}));
+  $('editorAspect').addEventListener('change',async()=>{if(!editorState)return;const ratio=selectedAspectRatio();if(ratio)setCropToAspect(ratio);await drawEditor();await drawEditorPaperPreview();});
+  window.addEventListener('resize',()=>{if(!editorBackdropIsHidden())resizeEditorCanvas();});
+  window.addEventListener('orientationchange',()=>{if(!editorBackdropIsHidden())setTimeout(resizeEditorCanvas,120);});
+  function editorBackdropIsHidden(){return $('editorBackdrop').classList.contains('hidden');}
+  $('editorApply').onclick=()=>{if(!editingItem||!editorState)return;editingItem.zoom=( $('enableColumns').checked && editingItem.collageSelected ) ? (editingItem.zoom||1) : editorState.zoom;editingItem.rotation=editorState.rotation;editingItem.fit=editorState.fit;editingItem.crop={...editorState.crop};closeEditor();renderImages();setStatus('imageStatus','Image edits applied. They will be used when printing.','good');scheduleSessionSave();};
+
+  ['dragenter','dragover'].forEach(evt=>drop.addEventListener(evt,e=>{e.preventDefault();drop.classList.add('over');}));
+  ['dragleave','drop'].forEach(evt=>drop.addEventListener(evt,e=>{e.preventDefault();drop.classList.remove('over');}));
+  drop.addEventListener('drop',e=>{const files=e.dataTransfer?.files;if(files?.length)addImages(files);else setStatus('imageStatus','This drag did not provide an image file. Try downloading it first.','error');});
+  document.addEventListener('dragover',e=>e.preventDefault());
+  document.addEventListener('drop',e=>{if(!drop.contains(e.target))e.preventDefault();});
+  imageInput.addEventListener('change',e=>{addImages(e.target.files);imageInput.value='';});
+  $('clearImages').onclick=()=>{images.forEach(i=>{URL.revokeObjectURL(i.url);if(i.thumbUrl)URL.revokeObjectURL(i.thumbUrl);});images=[];imagePage=0;thumbnailQueue.length=0;renderImages();setStatus('imageStatus','No images added yet.');scheduleSessionSave();};
+  $('imagePageSize').addEventListener('change',()=>{imagePageSize=Number($('imagePageSize').value)||10;imagePage=0;renderImages();scheduleSessionSave();});
+  $('imagePrevPage').onclick=()=>{if(imagePage>0){imagePage--;renderImages();scheduleSessionSave();}};
+  $('imageNextPage').onclick=()=>{const pages=Math.ceil(images.length/imagePageSize);if(imagePage<pages-1){imagePage++;renderImages();scheduleSessionSave();}};
+
+  function openPrintWindow(title) {
+    const w=window.open('','_blank');
+    if(!w){alert('Your browser blocked the print window. Allow pop-ups for this page, then try again.');return null;}
+    w.document.open();
+    w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>
+      @page{margin:0}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}
+      body{font-family:Arial,sans-serif}.sheet{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;page-break-after:always;break-after:page}
+      .sheet:last-child{page-break-after:auto;break-after:auto}.sheet img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+      .pdfpage{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;page-break-after:always;break-after:page;overflow:hidden}
+      .pdfpage:last-child{page-break-after:auto;break-after:auto}.pdfpage canvas{max-width:100%;max-height:100%;object-fit:contain}
+      @media print{html,body{width:100%;height:auto}.sheet,.pdfpage{height:100vh}}
+    </style></head><body><div id="printRoot"></div></body></html>`);
+    w.document.close(); return w;
+  }
+  $('selectAllImages').onclick=()=>{images.forEach(i=>i.selected=true);renderImages();scheduleSessionSave();};
+  $('selectNoImages').onclick=()=>{images.forEach(i=>i.selected=false);renderImages();scheduleSessionSave();};
+  function selectedImages(){return images.filter(i=>i.selected);}
+  async function imageCanvas(item,width,height,fitOverride){
+    const source=new Image();source.src=item.url;
+    await new Promise((resolve,reject)=>{if(source.complete&&source.naturalWidth)resolve();else{source.onload=resolve;source.onerror=reject;}});
+    const rotatedFull=makeRotatedCanvas(source,item.rotation||0);
+    const crop=item.crop||{x:0,y:0,w:1,h:1};
+    const sx=Math.max(0,Math.min(rotatedFull.width-1,Math.round(crop.x*rotatedFull.width)));
+    const sy=Math.max(0,Math.min(rotatedFull.height-1,Math.round(crop.y*rotatedFull.height)));
+    const scw=Math.max(1,Math.min(rotatedFull.width-sx,Math.round(crop.w*rotatedFull.width)));
+    const sch=Math.max(1,Math.min(rotatedFull.height-sy,Math.round(crop.h*rotatedFull.height)));
+    const rotated=document.createElement('canvas');rotated.width=scw;rotated.height=sch;
+    rotated.getContext('2d').drawImage(rotatedFull,sx,sy,scw,sch,0,0,scw,sch);
+    const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,width,height);
+    const fit=fitOverride||item.fit;let scale=(fit==='cover'?Math.max(width/rotated.width,height/rotated.height):Math.min(width/rotated.width,height/rotated.height))*item.zoom;
+    const dw=rotated.width*scale,dh=rotated.height*scale,dx=(width-dw)*(item.x/100),dy=(height-dh)*(item.y/100);
+    ctx.drawImage(rotated,dx,dy,dw,dh);return canvas;
+  }
+  function openImagePrint(title,paper='A4'){
+    const w=window.open('','_blank');if(!w){alert('Your browser blocked the print window. Allow pop-ups for this page and try again.');return null;}
+    const dims={Letter:['8.5in','11in'],Legal:['8.5in','14in'],A4:['210mm','297mm'],A5:['148mm','210mm']},d=dims[paper]||dims.A4;
+    w.document.open();w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>
+      @page{size:${d[0]} ${d[1]};margin:0}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}
+      .sheet{width:${d[0]};height:${d[1]};display:flex;align-items:center;justify-content:center;overflow:hidden;padding:5mm;break-after:page;page-break-after:always}
+      .sheet:last-child{break-after:auto;page-break-after:auto}.sheet img{display:block;width:100%;height:100%;object-fit:contain}
+      @media print{html,body{width:${d[0]};margin:0}.sheet{width:${d[0]};height:${d[1]};min-height:${d[1]};max-height:${d[1]};break-inside:avoid;overflow:hidden}}
+    </style></head><body><div id="printRoot"></div></body></html>`);w.document.close();return w;
+  }
+  async function printWhenReady(w){
+    if(!w || w.closed) throw new Error('The print window was closed before printing.');
+    const imgs=[...w.document.querySelectorAll('#printRoot img')];
+    await Promise.all(imgs.map(img=>{
+      if(img.complete && img.naturalWidth>0) return Promise.resolve();
+      return new Promise((resolve,reject)=>{
+        const timer=setTimeout(()=>reject(new Error('Images took too long to load for printing. Please try again.')),15000);
+        img.onload=()=>{clearTimeout(timer);resolve();};
+        img.onerror=()=>{clearTimeout(timer);reject(new Error('A preview image could not be loaded for printing.'));};
+      });
+    }));
+    try{if(w.document.fonts&&w.document.fonts.ready) await w.document.fonts.ready;}catch(_){}
+    await new Promise(resolve=>w.requestAnimationFrame(()=>w.requestAnimationFrame(resolve)));
+    w.focus();w.print();
+  }
+
+  let preparedCollageDataUrls=[], preparedSeparateDataUrls=[], preparedAllPageUrls=[], preparedCollagePaper='A4', preparedCollageCount=0, preparedSeparateCount=0, preparedCollageItems=[], preparedCollageLayouts=[];
+  const collageFitById={};
+  function updateColumnControls(){
+    const enabled=$('enableColumns').checked;
+    $('collageColumns').disabled=!enabled;$('collageFit').disabled=!enabled;
+    $('columnOptions').classList.toggle('disabled-controls',!enabled);
+    $('columnOptions').setAttribute('aria-disabled',String(!enabled));
+    const included=images.filter(i=>i.selected);
+    const collageCount=enabled?included.filter(i=>i.collageSelected).length:0;
+    const separateCount=included.length-collageCount;
+    const any=included.length>0;
+    $('previewAll').disabled=!any;
+    $('printAll').disabled=!any;
+  }
+  $('enableColumns').addEventListener('change',()=>{renderImages();updateColumnControls();if(!editorBackdropIsHidden())updateEditorSizeControl();scheduleSessionSave();});
+  function collageGrid(count, paper, layout){
+    const dims={Letter:[215.9,279.4],Legal:[215.9,355.6],A4:[210,297],A5:[148,210]},[pw,ph]=dims[paper]||dims.A4;
+    let n=layout==='auto'?Math.min(4,Math.max(1,count)):Number(layout);n=Math.max(1,n);
+    let cols=1,rows=n,best=Infinity;
+    for(let c=1;c<=n;c++){if(n%c!==0)continue;const r=n/c,aspect=(pw/c)/(ph/r),score=Math.abs(Math.log(aspect));if(score<best){best=score;cols=c;rows=r;}}
+    return {cols,rows,n,pw,ph};
+  }
+  async function buildCollagePages(paper=preparedCollagePaper){
+    const chosen=preparedCollageItems;
+    const dims={Letter:[215.9,279.4],Legal:[215.9,355.6],A4:[210,297],A5:[148,210]},mm=dims[paper]||dims.A4;
+    const W=Math.round(mm[0]*8),H=Math.round(mm[1]*8),pad=Math.round(Math.min(W,H)*.025),gap=Math.round(Math.min(W,H)*.018);
+    const layout=$('collageColumns').value,perPage=layout==='auto'?Math.max(1,Math.min(4,chosen.length)):Number(layout);
+    const pages=[],layouts=[];
+    for(let offset=0;offset<chosen.length;offset+=perPage){
+      const batch=chosen.slice(offset,offset+perPage),grid=collageGrid(batch.length,paper,layout==='auto'?'auto':String(batch.length));
+      const cellW=Math.floor((W-2*pad-gap*(grid.cols-1))/grid.cols),cellH=Math.floor((H-2*pad-gap*(grid.rows-1))/grid.rows);
+      const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');
+      ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);const cells=[];
+      for(let i=0;i<batch.length;i++){
+        const item=batch[i],fit=collageFitById[item.id]||$('collageFit').value;
+        const c=await imageCanvas({...item,zoom:1,x:50,y:50},cellW,cellH,fit);
+        const col=i%grid.cols,row=Math.floor(i/grid.cols),x=pad+col*(cellW+gap),y=pad+row*(cellH+gap);
+        ctx.drawImage(c,x,y,cellW,cellH);cells.push({id:item.id,x,y,w:cellW,h:cellH});
+      }
+      pages.push(canvas.toDataURL('image/jpeg',.96));layouts.push({W,H,grid,pad,gap,cells});
+    }
+    preparedCollageLayouts=layouts;return pages;
+  }
+  async function refreshCollagePreview(paper=preparedCollagePaper){preparedCollagePaper=paper;preparedCollageDataUrls=await buildCollagePages(paper);renderCollagePreviewPages();}
+  function renderCollagePreviewPages(){
+    const root=$('collagePreviewPages');root.replaceChildren();
+    preparedCollageDataUrls.forEach((url,index)=>{
+      const layout=preparedCollageLayouts[index];if(!layout)return;
+      const wrap=document.createElement('div');wrap.className='collage-preview-page collage-page-overlay';
+      const [paperW,paperH]=paperDims(preparedCollagePaper);wrap.style.cssText=`position:relative;aspect-ratio:${layout.W}/${layout.H};width:min(100%,${paperW*1.45}px);margin:0 auto 8px`; 
+      const img=document.createElement('img');img.src=url;img.alt=`Collage page ${index+1}`;img.style.cssText='display:block;width:100%;height:100%;object-fit:fill';wrap.append(img);
+      layout.cells.forEach(cell=>{
+        const item=preparedCollageItems.find(x=>x.id===cell.id);if(!item)return;
+        const select=document.createElement('select');select.className='collage-cell-fit';select.setAttribute('aria-label',`Fit for ${item.file.name||'image'}`);
+        select.innerHTML='<option value="contain">Shrink to fit</option><option value="cover">Fill grid</option>';
+        select.value=collageFitById[item.id]||$('collageFit').value;
+        select.style.cssText=`position:absolute;left:${cell.x/layout.W*100+0.5}%;top:${cell.y/layout.H*100+0.5}%;width:min(44%,130px);font-size:11px;padding:3px;background:#ffffffed;border:1px solid #626777;border-radius:5px;z-index:2`;
+        select.addEventListener('change',async()=>{
+          collageFitById[item.id]=select.value;
+          try{await refreshCollagePreview();await buildSeparatePages();renderAllPreviewPages();updatePreviewMeta();}
+          catch(e){setStatus('imageStatus','Could not update preview.','error');}
+        });
+        wrap.append(select);
+      });
+      root.append(wrap);
+      const caption=document.createElement('div');caption.style.cssText='font-size:12px;padding:3px 8px 10px;color:#667085;text-align:center';caption.textContent=`Collage page ${index+1}`;root.append(caption);
+    });
+  }
+  async function buildSeparatePages(paper=$('paper').value){
+    const separate=images.filter(item=>item.selected&&(!$('enableColumns').checked||!item.collageSelected));
+    preparedSeparateDataUrls=[];
+    for(const item of separate){
+      const [pageW,pageH]=paperCanvasSize(paper,2400);
+      const c=await imageCanvas(item,pageW,pageH,'contain');
+      preparedSeparateDataUrls.push(c.toDataURL('image/jpeg',.96));
+    }
+    return preparedSeparateDataUrls;
+  }
+  function renderAllPreviewPages(){
+    renderCollagePreviewPages();
+    const root=$('collagePreviewPages');
+    preparedSeparateDataUrls.forEach((url,index)=>{
+      const wrap=document.createElement('div');wrap.className='collage-preview-page';
+      const [paperW,paperH]=paperDims(preparedCollagePaper);wrap.style.cssText=`width:min(100%,${paperW*1.45}px);aspect-ratio:${paperW}/${paperH};margin:0 auto 8px;background:#fff`;
+      const img=document.createElement('img');img.src=url;img.alt=`Separate image page ${index+1}`;img.style.cssText='display:block;width:100%;height:100%;object-fit:contain';
+      wrap.append(img);root.append(wrap);
+      const caption=document.createElement('div');caption.style.cssText='font-size:12px;padding:3px 8px 10px;color:#667085;text-align:center';caption.textContent=`Separate page ${index+1}`;root.append(caption);
+    });
+    preparedAllPageUrls=[...preparedCollageDataUrls,...preparedSeparateDataUrls];
+  }
+  function updatePreviewMeta(){
+    $('collagePreviewMeta').textContent=`${preparedCollageCount} collage image(s) · ${preparedCollageDataUrls.length} collage page(s) · ${preparedSeparateCount} separate page(s) · ${preparedCollagePaper}`;
+  }
+
+  async function prepareAllPages(){
+    const paper=$('paper').value;
+    const included=images.filter(i=>i.selected);
+    if(!included.length)throw new Error('Select at least one image.');
+    preparedCollageItems=$('enableColumns').checked?included.filter(i=>i.collageSelected):[];
+    preparedSeparateCount=included.filter(i=>!$('enableColumns').checked||!i.collageSelected).length;
+    preparedCollageCount=preparedCollageItems.length;
+    preparedCollagePaper=paper;
+    preparedCollageDataUrls=[];
+    preparedCollageLayouts=[];
+    if(preparedCollageItems.length)await refreshCollagePreview(paper);
+    else { preparedCollageDataUrls=[]; preparedCollageLayouts=[]; }
+    await buildSeparatePages(paper);
+    renderAllPreviewPages();
+    updatePreviewMeta();
+  }
+  $('previewAll').onclick=async()=>{
+    await sessionRestorePromise;
+    await saveSessionNow().catch(()=>{});
+    $('previewAll').disabled=true;setStatus('imageStatus','Preparing preview of all selected images…','good');
+    try{
+      await prepareAllPages();
+      $('collagePreviewBackdrop').classList.remove('hidden');document.body.style.overflow='hidden';
+      setStatus('imageStatus','All selected images are ready in the combined preview.','good');
+    }catch(e){setStatus('imageStatus',e.message||'Could not prepare preview.','error');}
+    finally{updateColumnControls();}
+  };
+  $('printAll').onclick=async()=>{
+    await sessionRestorePromise;
+    const included=images.filter(i=>i.selected);if(!included.length)return;
+    $('printAll').disabled=true;setStatus('imageStatus','Preparing all pages for direct printing…','good');
+    let w=null;
+    try{
+      // Open the print window synchronously so the browser does not block the print action.
+      w=openImagePrint('Drop2Print — All selected images',$('paper').value);if(!w)return;
+      await saveSessionNow().catch(()=>{});
+      await prepareAllPages();
+      const root=w.document.getElementById('printRoot');
+      preparedAllPageUrls.forEach(url=>{const page=w.document.createElement('section');page.className='sheet';const img=w.document.createElement('img');img.src=url;page.append(img);root.append(page);});
+      w.addEventListener('afterprint',()=>setTimeout(()=>w.close(),300));
+      await printWhenReady(w);
+      setStatus('imageStatus',`Sent ${preparedAllPageUrls.length} page(s) to print: collage pages followed by separate image pages.`,'good');
+    }catch(e){if(w)w.close();setStatus('imageStatus',e.message||'Could not prepare pages for printing.','error');}
+    finally{updateColumnControls();}
+  };
+  function closeCollagePreview(){ $('collagePreviewBackdrop').classList.add('hidden');if($('editorBackdrop').classList.contains('hidden'))document.body.style.overflow='';}
+  $('collagePreviewClose').onclick=closeCollagePreview;$('collagePreviewCancel').onclick=closeCollagePreview;
+  $('previewPrint').onclick=async()=>{
+    await sessionRestorePromise;
+    await saveSessionNow().catch(()=>{});
+    if(!preparedAllPageUrls.length){setStatus('imageStatus','Prepare the preview before printing.','error');return;}
+    // Open synchronously from the button click so mobile browsers do not block the print window.
+    const w=openImagePrint('Drop2Print — Previewed images',$('paper').value);if(!w)return;
+    const root=w.document.getElementById('printRoot');
+    preparedAllPageUrls.forEach(url=>{const page=w.document.createElement('section');page.className='sheet';const img=w.document.createElement('img');img.src=url;page.append(img);root.append(page);});
+    w.addEventListener('afterprint',()=>setTimeout(()=>w.close(),300));
+    printWhenReady(w).catch(e=>setStatus('imageStatus',e.message||'Could not print preview.','error'));
+    setStatus('imageStatus',`Sent ${preparedAllPageUrls.length} previewed page(s) to print.`,'good');
+  };
+  $('collagePreviewBackdrop').addEventListener('click',e=>{if(e.target===$('collagePreviewBackdrop'))closeCollagePreview();});
+
+
+  function parsePages(str,total) {
+    const out=new Set();
+    for(const raw of str.split(',')){
+      const part=raw.trim(); if(!part)continue;
+      const m=part.match(/^(\d+)\s*(?:-\s*(\d+))?$/);
+      if(!m) throw new Error(`Invalid page entry: "${part}"`);
+      let a=Number(m[1]), b=m[2]?Number(m[2]):a;
+      if(a<1||b<1||a>total||b>total)throw new Error(`Pages must be between 1 and ${total}.`);
+      if(a>b)[a,b]=[b,a];
+      for(let n=a;n<=b;n++)out.add(n);
+    }
+    return [...out].sort((a,b)=>a-b);
+  }
+  function selectedPages() {
+    if(!pdfDoc)return [];
+    const mode=document.querySelector('input[name="pageMode"]:checked').value, total=pdfDoc.numPages;
+    if(mode==='all')return Array.from({length:total},(_,i)=>i+1);
+    if(mode==='odd')return Array.from({length:total},(_,i)=>i+1).filter(n=>n%2===1);
+    if(mode==='even')return Array.from({length:total},(_,i)=>i+1).filter(n=>n%2===0);
+    return parsePages($('customPages').value,total);
+  }
+  function updatePagePreview() {
+    if(!pdfDoc)return;
+    try {
+      const pages=selectedPages(); $('pdfPages').replaceChildren();
+      pages.slice(0,80).forEach(n=>{const s=document.createElement('span');s.className='page-chip';s.textContent='Page '+n;$('pdfPages').append(s);});
+      if(pages.length>80){const s=document.createElement('span');s.className='page-chip';s.textContent=`+ ${pages.length-80} more`;$('pdfPages').append(s);}
+      setStatus('pdfStatus',`${pdfName} · ${pdfDoc.numPages} pages · ${pages.length} selected`, 'good');
+      $('printPdf').disabled=pages.length===0;
+    } catch(err) {setStatus('pdfStatus',err.message,'error');$('printPdf').disabled=true;$('pdfPages').replaceChildren();}
+  }
+  async function loadPdf(file) {
+    clearPdf();
+    if(!file)return;
+    if(!window.pdfjsLib){setStatus('pdfStatus','PDF library did not load. Check your internet connection and refresh.','error');return;}
+    if(file.type!=='application/pdf'&&!file.name.toLowerCase().endsWith('.pdf')){setStatus('pdfStatus','Please choose a PDF file.','error');return;}
+    try{
+      pdfName=file.name;pdfBytes=await file.arrayBuffer();
+      pdfDoc=await pdfjsLib.getDocument({data:new Uint8Array(pdfBytes)}).promise;
+      $('pdfControls').classList.remove('hidden');
+      updatePagePreview();
+    }catch(err){clearPdf();setStatus('pdfStatus','Could not open this PDF. It may be damaged or password-protected.','error');}
+  }
+  function clearPdf(){pdfBytes=null;pdfDoc=null;pdfName='';$('pdfControls').classList.add('hidden');$('pdfPages').replaceChildren();$('printPdf').disabled=true;}
+  $('pdfInput').addEventListener('change',e=>loadPdf(e.target.files[0]));
+  $('clearPdf').onclick=()=>{clearPdf();$('pdfInput').value='';setStatus('pdfStatus','No PDF selected.');};
+  document.querySelectorAll('input[name="pageMode"]').forEach(r=>r.addEventListener('change',()=>{$('customWrap').classList.toggle('hidden',document.querySelector('input[name="pageMode"]:checked').value!=='custom');updatePagePreview();}));
+  $('customPages').addEventListener('input',updatePagePreview);
+  ['collageColumns','collageFit'].forEach(id=>$(id).addEventListener('change',scheduleSessionSave));
+  window.addEventListener('pagehide',()=>{clearTimeout(persistTimer);saveSessionNow().catch(()=>{});});
+  window.addEventListener('beforeunload',()=>{clearTimeout(persistTimer);saveSessionNow().catch(()=>{});});
+  let paperRefreshToken=0;
+  $('paper').addEventListener('change',async()=>{
+    scheduleSessionSave();
+    const token=++paperRefreshToken;
+    try{
+      if(!editorBackdropIsHidden()) await drawEditorPaperPreview();
+      if(!$('collagePreviewBackdrop').classList.contains('hidden')){
+        await prepareAllPages();
+        if(token===paperRefreshToken) setStatus('imageStatus',`Preview updated for ${$('paper').value}.`,'good');
+      }
+    }catch(e){
+      if(token===paperRefreshToken) setStatus('imageStatus',e.message||'Could not refresh preview for this paper size. Close the preview and try again.','error');
+    }
+  });
+
+  // Restore the last local image session after handlers are installed.
+  const sessionRestorePromise=restoreSession();
+
+  $('printPdf').onclick=async()=>{
+    if(!pdfDoc)return;
+    let pages;try{pages=selectedPages();}catch(e){setStatus('pdfStatus',e.message,'error');return;}
+    if(!pages.length)return;
+    const w=openPrintWindow('Drop2Print — '+pdfName);if(!w)return;
+    const paper=$('paper').value;
+    if(paper!=='auto'){
+      const dims={Letter:'8.5in 11in',Legal:'8.5in 14in',A4:'210mm 297mm',A5:'148mm 210mm'};
+      const [a,b]=dims[paper].split(' ');
+      const style=w.document.createElement('style');style.textContent=`@page{size:${a} ${b};margin:0}`;w.document.head.append(style);
+    }
+    const root=w.document.getElementById('printRoot');
+    setStatus('pdfStatus','Rendering selected pages for printing…','good');$('printPdf').disabled=true;
+    try{
+      for(const n of pages){
+        const page=await pdfDoc.getPage(n);
+        const base=page.getViewport({scale:1});
+        const maxW=1600,maxH=2100,scale=Math.min(maxW/base.width,maxH/base.height,2.5);
+        const viewport=page.getViewport({scale});
+        const canvas=w.document.createElement('canvas');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
+        const ctx=canvas.getContext('2d',{alpha:false});
+        await page.render({canvasContext:ctx,viewport}).promise;
+        const wrap=w.document.createElement('div');wrap.className='pdfpage';canvas.style.width='auto';canvas.style.height='auto';wrap.append(canvas);root.append(wrap);
+      }
+      setStatus('pdfStatus','Print window prepared. Choose your printer in the dialog.','good');
+      w.addEventListener('afterprint',()=>setTimeout(()=>w.close(),250));
+      setTimeout(()=>w.print(),300);
+    }catch(e){w.close();setStatus('pdfStatus','Could not render the PDF pages. Try another PDF.','error');}
+    finally{$('printPdf').disabled=false;}
+  };
+})();
+</script>
+</body>
+</html>
